@@ -1,15 +1,15 @@
 package first;
-class globall{
-    public int currentMonth = 1;
-    public int currentYear = 2023;
-}
+//class globall{
+//    public static int currentMonth = 1;
+//    public static int currentYear = 2023;
+//}
 public class helloWorld
 {
-
+	 
   public static void main (String[]args)
   {
 
-
+	  System.out.println("lol");
   }
 
 }
@@ -17,6 +17,8 @@ class CarCompany
 {
    String Name, Location, No_Plate, CarModel, CarCompany;
    long ContactDetails;
+   static int currentMonth = 1;
+   static int currentYear = 2023;
     CarCompany (String Name, String Location, String No_Plate, String CarModel,String CarCompany, long ContactDetails)
   {
     this.Name = Name;
@@ -26,6 +28,10 @@ class CarCompany
     this.CarCompany = CarCompany;
     this.ContactDetails = ContactDetails;
   }
+    CarCompany(){
+    	
+    }
+    //resale method
 }
 
 class Body extends CarCompany
@@ -36,8 +42,10 @@ class Body extends CarCompany
    float Dimension, Weigth, Price, Performance;
    int pucMonth; //from 1-12 month
    int pucYear;
+   int extra=currentYear;
     Body (String Name, String Location, String No_Plate, String CarModel,String CarCompany, long ContactDetails, String YearAndMake,String Bodytype, float Dimension, float Weigth, float Price,float Performance, int pucMonth, int pucYear)
   {
+    	super(Name, Location, No_Plate, CarModel, CarCompany,  ContactDetails);
     this.YearAndMake = YearAndMake;
     this.Bodytype = Bodytype;
     this.Dimension = Dimension;
@@ -45,14 +53,15 @@ class Body extends CarCompany
     this.Price = Price;
     this.Performance = Performance;
     this.pucMonth = pucMonth;
-    super (String Name, String Location, String No_Plate, String CarModel,String CarCompany, long ContactDetails);
   }
+    Body(){
+    	
+    }
     public void PucReport ()
   {
     if ( currentYear-pucYear == 0 &&  currentMonth-pucMonth  <6)
       {
-System.out.println ("Your PUC is going to expire in " +
-  6-(currentMonth-pucMonth) + " Month(s)");
+System.out.println ("Your PUC is going to expire in " +  (6-(currentMonth-pucMonth)) + " Month(s)");
       }
       else if(  currentYear-pucYear == 1 &&  pucMonth-6  >currentMonth){
           System.out.println ("Your PUC is going to expire in " +
@@ -67,9 +76,7 @@ System.out.println ("Your PUC is going to expire in " +
   (currentMonth+6-pucMonth) + " Month(s)");
       }
         else if(  currentYear-pucYear > 1 &&  pucMonth-6  <=currentMonth){
-          System.out.println ("Your PUC has expired since " +
-          (currentYear-pucYear-1)+" Year(s) and "
-  (currentMonth+6-pucMonth) + " Month(s)");
+          System.out.println ("Your PUC has expired since " + (currentYear-pucYear-1)+ " Year(s) and "+(currentMonth+6-pucMonth) + " Month(s)");
       }
   }
 }
@@ -85,11 +92,8 @@ class sedan extends Body
   String Bodytype, float Dimension, float Weigth, float Price,
   float Performance, int pucMonth, int pucYear)
   {
+    	super( Name,  Location,  No_Plate,  CarModel,   CarCompany, ContactDetails,  YearAndMake,  Bodytype, Dimension, Weigth,  Price, Performance,  pucMonth,  pucYear);
     sum = sum + Price;
-    super (String Name, String Location, String No_Plate, String CarModel,
-  String CarCompany, long ContactDetails, String YearAndMake,
-  String Bodytype, float Dimension, float Weigth, float Price,
-  float Performance, int pucMonth, int pucYear);
   }
   public void Report ()
   {
@@ -108,12 +112,8 @@ static float sum = 0;
       String Bodytype, float Dimension, float Weigth, float Price,
       float Performance, int pucMonth, int pucYear)
 {
+	 super( Name,  Location,  No_Plate,  CarModel,   CarCompany, ContactDetails,  YearAndMake,  Bodytype, Dimension, Weigth,  Price, Performance,  pucMonth,  pucYear);
  sum = sum + Price;
- super (String Name, String Location, String No_Plate,
-String CarModel, String CarCompany, long ContactDetails,
-String YearAndMake, String Bodytype, float Dimension,
-float Weigth, float Price, float Performance, int pucMonth,
-int pucYear);
 }
 public void Report ()
 {
@@ -134,11 +134,7 @@ public void Report ()
   float Weigth, float Price, float Performance, int pucMonth,
   int pucYear)
       {
-sum = sum + Price;
-super (String Name, String Location, String No_Plate, String CarModel,
-      String CarCompany, long ContactDetails, String YearAndMake,
-      String Bodytype, float Dimension, float Weigth, float Price,
-      float Performance, int pucMonth, int pucYear);
+        	super( Name,  Location,  No_Plate,  CarModel,   CarCompany, ContactDetails,  YearAndMake,  Bodytype, Dimension, Weigth,  Price, Performance,  pucMonth,  pucYear);sum = sum + Price;
       }
       public void Report ()
       {
@@ -159,11 +155,7 @@ System.out.println ("Number of sedan sold: " + counter +
     float Weigth, float Price, float Performance,
     int pucMonth, int pucYear)
       {
-sum = sum + Price;
-super (String Name, String Location, String No_Plate, String CarModel,
-      String CarCompany, long ContactDetails, String YearAndMake,
-      String Bodytype, float Dimension, float Weigth, float Price,
-      float Performance, int pucMonth, int pucYear);
+        	super( Name,  Location,  No_Plate,  CarModel,   CarCompany, ContactDetails,  YearAndMake,  Bodytype, Dimension, Weigth,  Price, Performance,  pucMonth,  pucYear);sum = sum + Price;
       }
       public void Report ()
       {
@@ -183,11 +175,7 @@ System.out.println ("Number of sedan sold: " + counter +
       String Bodytype, float Dimension, float Weigth, float Price,
       float Performance, int pucMonth, int pucYear)
       {
-sum = sum + Price;
-super (String Name, String Location, String No_Plate, String CarModel,
-      String CarCompany, long ContactDetails, String YearAndMake,
-      String Bodytype, float Dimension, float Weigth, float Price,
-      float Performance, int pucMonth, int pucYear);
+        	super( Name,  Location,  No_Plate,  CarModel,   CarCompany, ContactDetails,  YearAndMake,  Bodytype, Dimension, Weigth,  Price, Performance,  pucMonth,  pucYear);sum = sum + Price;
       }
       public void Report ()
       {
