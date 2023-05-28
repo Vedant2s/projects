@@ -4,6 +4,11 @@ package first;
 //    public static int currentYear = 2023;
 //}
 import java.util.Scanner;
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 class inputc{
 	private String Name, Location, No_Plate, CarModel, CarCompany;
 	   private long ContactDetails;
@@ -101,6 +106,7 @@ public class helloWorld
 	  Coupe[] c=new Coupe[100];
 	  int choice=0,choice2=0,counterSedan=0,counterSUV=0,counterHatchback=0,counterCoupe=0,counterPickupTruck=0;
 	  do{System.out.println("Enter Your choice \n1.Entry\n2.Update\n3.Display");
+	  choice=input.nextInt();
 	  switch(choice) {
 	  case 1:
 		  System.out.println("Enter the body type of the car you want to enter\n1.Sedan\n2.SUV\n3.Hatchback\n4.PickupTruck\n5.Coupe");
@@ -213,13 +219,15 @@ System.out.println ("Your PUC is going to expire in " +  (6-(currentMonth-pucMon
 class sedan extends Body 
 {
   //for search function all the types
-  static int counter;
+  static int counter=0;
   String ID;
   static float sum = 0;
     sedan (String Name, String Location, String No_Plate, String CarModel,String CarCompany, long ContactDetails, String YearAndMake, String Bodytype, float Dimension, float Weigth, float Price,float Performance, int pucMonth, int pucYear)
   {
     	super( Name,  Location,  No_Plate,  CarModel,   CarCompany, ContactDetails,  YearAndMake,  Bodytype, Dimension, Weigth,  Price, Performance,  pucMonth,  pucYear);
     sum = sum + Price;
+    counter++;
+    ID=Character.toString('S')+counter;
   }
   public void Report ()
   {
@@ -230,7 +238,7 @@ class sedan extends Body
 }
       class SUV extends Body
       {
-static int counter;
+static int counter=0;
 String ID;
 static float sum = 0;
  SUV (String Name, String Location, String No_Plate, String CarModel,
@@ -240,18 +248,19 @@ static float sum = 0;
 {
 	 super( Name,  Location,  No_Plate,  CarModel,   CarCompany, ContactDetails,  YearAndMake,  Bodytype, Dimension, Weigth,  Price, Performance,  pucMonth,  pucYear);
  sum = sum + Price;
+ counter++;
+ ID="SU"+counter;
 }
 public void Report ()
 {
  System.out.println ("Number of sedan sold: " + counter +
      "\ntotal sale : " + sum);
 }
-
       }
 
     class Hatchback extends Body
     {
-      static int counter;
+      static int counter=0;
       String ID;
       static float sum = 0;
         Hatchback (String Name, String Location, String No_Plate,
@@ -260,19 +269,21 @@ public void Report ()
   float Weigth, float Price, float Performance, int pucMonth,
   int pucYear)
       {
-        	super( Name,  Location,  No_Plate,  CarModel,   CarCompany, ContactDetails,  YearAndMake,  Bodytype, Dimension, Weigth,  Price, Performance,  pucMonth,  pucYear);sum = sum + Price;
+        	super( Name,  Location,  No_Plate,  CarModel,   CarCompany, ContactDetails,  YearAndMake,  Bodytype, Dimension, Weigth,  Price, Performance,  pucMonth,  pucYear);
+        	sum = sum + Price;
+        	counter++;
+        	ID=Character.toString('H')+counter;
       }
       public void Report ()
       {
 System.out.println ("Number of sedan sold: " + counter +
    "\ntotal sale : " + sum);
-      }
-     
+      }     
     }
 
     class PickupTruck extends Body
     {
-      static int counter;
+      static int counter=0;
       String ID;
       static float sum = 0;
         PickupTruck (String Name, String Location, String No_Plate,
@@ -281,19 +292,21 @@ System.out.println ("Number of sedan sold: " + counter +
     float Weigth, float Price, float Performance,
     int pucMonth, int pucYear)
       {
-        	super( Name,  Location,  No_Plate,  CarModel,   CarCompany, ContactDetails,  YearAndMake,  Bodytype, Dimension, Weigth,  Price, Performance,  pucMonth,  pucYear);sum = sum + Price;
+        	super( Name,  Location,  No_Plate,  CarModel,   CarCompany, ContactDetails,  YearAndMake,  Bodytype, Dimension, Weigth,  Price, Performance,  pucMonth,  pucYear);
+        	sum = sum + Price;
+        	counter++;
+        	ID=Character.toString('P')+counter;
       }
       public void Report ()
       {
 System.out.println ("Number of sedan sold: " + counter +
    "\ntotal sale : " + sum);
-      }
-     
+      }  
     }
 
     class Coupe extends Body
     {
-      static int counter;
+      static int counter=0;
       String ID;
       static float sum = 0;
         Coupe (String Name, String Location, String No_Plate, String CarModel,
@@ -301,12 +314,66 @@ System.out.println ("Number of sedan sold: " + counter +
       String Bodytype, float Dimension, float Weigth, float Price,
       float Performance, int pucMonth, int pucYear)
       {
-        	super( Name,  Location,  No_Plate,  CarModel,   CarCompany, ContactDetails,  YearAndMake,  Bodytype, Dimension, Weigth,  Price, Performance,  pucMonth,  pucYear);sum = sum + Price;
+        	super( Name,  Location,  No_Plate,  CarModel,   CarCompany, ContactDetails,  YearAndMake,  Bodytype, Dimension, Weigth,  Price, Performance,  pucMonth,  pucYear);
+        	sum = sum + Price;
+        	counter++;
+        	ID=Character.toString('C')+counter;
       }
       public void Report ()
       {
 System.out.println ("Number of sedan sold: " + counter +
    "\ntotal sale : " + sum);
       }
-     
+    }
+class StringEncryption extends CarCompany {
+        private static final String AES_CIPHER_ALGORITHM = "AES/CBC/PKCS5PADDING";
+
+        public void enc() {
+            String originalString = Long. toString(ContactDetails);
+            String secretKey = "ThisIsASecretKey";
+            String encryptedString = encrypt(originalString, secretKey);
+            String decryptedString = decrypt(encryptedString, secretKey);
+
+            System.out.println("Original String: " + originalString);
+            System.out.println("Encrypted String: " + encryptedString);
+            System.out.println("Decrypted String: " + decryptedString);
+        }
+
+        public static String encrypt(String strToEncrypt, String secretKey) {
+            try {
+                byte[] keyBytes = secretKey.getBytes(StandardCharsets.UTF_8);
+                SecretKeySpec secretKeySpec = new SecretKeySpec(keyBytes, "AES");
+
+                byte[] ivBytes = new byte[16]; // Initialization Vector
+                IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
+
+                Cipher cipher = Cipher.getInstance(AES_CIPHER_ALGORITHM);
+                cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivSpec);
+
+                byte[] encryptedBytes = cipher.doFinal(strToEncrypt.getBytes(StandardCharsets.UTF_8));
+                return Base64.getEncoder().encodeToString(encryptedBytes);
+            } catch (Exception e) {
+                System.err.println("Error encrypting string: " + e.getMessage());
+                return null;
+            }
+        }
+
+        public static String decrypt(String strToDecrypt, String secretKey) {
+            try {
+                byte[] keyBytes = secretKey.getBytes(StandardCharsets.UTF_8);
+                SecretKeySpec secretKeySpec = new SecretKeySpec(keyBytes, "AES");
+
+                byte[] ivBytes = new byte[16]; // Initialization Vector
+                IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
+
+                Cipher cipher = Cipher.getInstance(AES_CIPHER_ALGORITHM);
+                cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivSpec);
+
+                byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(strToDecrypt));
+                return new String(decryptedBytes);
+            } catch (Exception e) {
+                System.err.println("Error decrypting string: " + e.getMessage());
+                return null;
+            }
+        }
     }
