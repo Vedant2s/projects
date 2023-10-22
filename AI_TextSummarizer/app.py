@@ -140,7 +140,7 @@ def clear_compare_text():
 	entry1.delete('1.0',END)
 
 def clear_compare_display_result():
-	tab1_display.delete('1.0',END)
+	tab4_display.delete('1.0',END)
 def start_listening():
     recognizer = sr.Recognizer()
     with sr.Microphone() as source:
