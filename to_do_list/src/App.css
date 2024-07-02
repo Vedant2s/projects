@@ -1,0 +1,25 @@
+#username,
+#password {
+  text-align: center;
+  width: 20vw;
+  align-items: center;
+  background-color: chartreuse;
+  color: rebeccapurple;
+}
+label {
+  color: blueviolet;
+  padding-right: 3vw;
+}
+.divCenter,
+.divCenterBelow,
+.btnlogin,
+p {
+  margin-left: 40vw;
+}
+.btnlogin {
+  background-color: darkmagenta;
+  color: antiquewhite;
+}
+.divCenter {
+  margin-top: 19vw;
+}
